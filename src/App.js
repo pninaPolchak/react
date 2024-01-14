@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import List from './features/book/List.js';
+import { useSelector } from 'react-redux'; 
+import EditForm from './features/book/Edit.js';
+import Details from './features/book/Details.js';
+import AddForm from './features/book/Add.js';
 
 function App() {
+  let selectForShow=useSelector(st=>st.book.selectedForShow)
+let selectForEdit=useSelector(st=>st.book.selectedForEdit)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <List />
+      <AddForm/>
+      {selectForShow && <Details  />}
+      {selectForEdit && <EditForm />}
     </div>
   );
 }
